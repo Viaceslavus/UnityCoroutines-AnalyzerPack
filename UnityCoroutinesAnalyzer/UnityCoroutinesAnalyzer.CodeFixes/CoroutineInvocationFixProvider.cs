@@ -16,12 +16,12 @@ using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace UnityCoroutinesAnalyzer
 {
-    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(UnityCoroutinesAnalyzerCodeFixProvider)), Shared]
-    public class UnityCoroutinesAnalyzerCodeFixProvider : CodeFixProvider
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(CoroutineInvocationFixProvider)), Shared]
+    public class CoroutineInvocationFixProvider : CodeFixProvider
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(UnityCoroutinesAnalyzerAnalyzer.DiagnosticId); }
+            get { return ImmutableArray.Create(CoroutineInvocationAnalyzer.DiagnosticId); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()

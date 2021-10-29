@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using VerifyCS = UnityCoroutinesAnalyzer.Test.CSharpCodeFixVerifier<
-    UnityCoroutinesAnalyzer.UnityCoroutinesAnalyzerAnalyzer,
-    UnityCoroutinesAnalyzer.UnityCoroutinesAnalyzerCodeFixProvider>;
+    UnityCoroutinesAnalyzer.CoroutineInvocationAnalyzer,
+    UnityCoroutinesAnalyzer.CoroutineInvocationFixProvider>;
 
 namespace UnityCoroutinesAnalyzer.Test
 {

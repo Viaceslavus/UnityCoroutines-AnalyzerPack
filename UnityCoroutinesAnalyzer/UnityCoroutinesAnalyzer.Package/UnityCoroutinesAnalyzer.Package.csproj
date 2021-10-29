@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -11,8 +12,9 @@
     <PackageId>UnityCoroutinesAnalyzer</PackageId>
     <PackageVersion>1.0.0.0</PackageVersion>
     <Authors>Viaceslavus</Authors>
-    <PackageProjectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</PackageProjectUrl>
-    <RepositoryUrl>http://REPOSITORY_URL_HERE_OR_DELETE_THIS_LINE</RepositoryUrl>
+    <PackageLicense>https://opensource.org/licenses/MIT</PackageLicense>
+    <PackageProjectUrl>https://github.com/Viaceslavus/UnityCoroutines-AnalyzerPack</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Viaceslavus/UnityCoroutines-AnalyzerPack</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>UnityCoroutinesAnalyzersPack</Description>
     <PackageReleaseNotes>Initial release.</PackageReleaseNotes>

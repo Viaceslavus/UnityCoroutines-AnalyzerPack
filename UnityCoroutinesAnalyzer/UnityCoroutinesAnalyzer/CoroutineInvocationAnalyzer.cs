@@ -10,29 +10,8 @@ using System.Threading;
 
 namespace UnityCoroutinesAnalyzer
 {
-    public static class RoslynExtensions
-    {
-        public static TResultSyntax FindChildNode<TResultSyntax>(this CSharpSyntaxNode expression, Predicate<SyntaxNode> predicate = null) where TResultSyntax : CSharpSyntaxNode
-        {
-            int? TryParseSyntaxToEnum()
-            {
-                string typeName = typeof(TResultSyntax).Name;
-                int charToDeleteCount = "Syntax".Length;
-                object syntaxKind = Enum.Parse(typeof(SyntaxKind), typeName.Remove(typeName.Length - (charToDeleteCount + 1)));
-                return (int?)syntaxKind ?? throw new InvalidOperationException("Unable to parse the type automaticaly. Try to pass a predicate explicitly");
-            }
-
-            return expression.ChildNodes().Where(n => predicate == null ? n.IsKind((SyntaxKind)TryParseSyntaxToEnum()) : predicate(n)).First() as TResultSyntax;
-        }
-
-        public static TResultSyntax FindChildNodeWithSyntaxKind<TResultSyntax>(this CSharpSyntaxNode expression, SyntaxKind syntaxKind) where TResultSyntax : CSharpSyntaxNode
-        {
-            return expression.ChildNodes().Where(n => n.IsKind(syntaxKind)).First() as TResultSyntax;
-        }
-    }
-
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class UnityCoroutinesAnalyzerAnalyzer : DiagnosticAnalyzer
+    public class CoroutineInvocationAnalyzer : DiagnosticAnalyzer
     {
         public const string DiagnosticId = "UnityCoroutinesAnalyzer";
 
@@ -63,7 +42,7 @@ namespace UnityCoroutinesAnalyzer
             context.RegisterSyntaxNodeAction(AnalyzeOperation, SyntaxKind.ExpressionStatement);
         }
 
-        private bool MethodContainsBadCoroutineInvocation(InvocationExpressionSyntax invocation)
+        private static bool MethodContainsBadCoroutineInvocation(InvocationExpressionSyntax invocation)
         {
             ArgumentSyntax firstParam = invocation.ArgumentList.Arguments[0];
             InvocationExpressionSyntax firstParamInvocation = firstParam.FindChildNodeWithSyntaxKind<InvocationExpressionSyntax>(SyntaxKind.InvocationExpression);
@@ -79,12 +58,6 @@ namespace UnityCoroutinesAnalyzer
 
         private bool MethodIsCoroutineInvocation(string methodName) => CoroutineNames.Contains(methodName);
 
-        private void ReportDiagnostic(SyntaxNodeAnalysisContext context)
-        {
-            Diagnostic diagnostic = Diagnostic.Create(Rule, context.Node.GetLocation());
-            context.ReportDiagnostic(diagnostic);
-        }
-
         private void AnalyzeOperation(SyntaxNodeAnalysisContext context)
         {
             var methodRef = (ExpressionStatementSyntax)context.Node;
@@ -95,8 +68,7 @@ namespace UnityCoroutinesAnalyzer
             {
                 if(MethodContainsBadCoroutineInvocation(methodInvocation))
                 {
-                    Diagnostic diagnostic = Diagnostic.Create(Rule, context.Node.GetLocation());
-                    context.ReportDiagnostic(diagnostic);
+                    context.ReportNewDiagnostic(Rule);
                 }
             }
         }
