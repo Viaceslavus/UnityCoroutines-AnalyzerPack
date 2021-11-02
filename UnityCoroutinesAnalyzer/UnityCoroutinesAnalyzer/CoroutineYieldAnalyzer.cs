@@ -31,16 +31,6 @@ namespace UnityCoroutinesAnalyzer
             context.RegisterSyntaxNodeAction(AnalyzeOperation, SyntaxKind.MethodDeclaration);
         }
 
-        System.Collections.IEnumerator Some()
-        {
-            while(true)
-            {
-                int s = 0;
-                Console.WriteLine("fewe");
-                yield return null;
-            }
-        }
-
         private static bool IsCoroutineMethod(MethodDeclarationSyntax method)
         {
             var idName = method.FindChildNodeWithSyntaxKind<IdentifierNameSyntax>(SyntaxKind.IdentifierName);
@@ -81,7 +71,7 @@ namespace UnityCoroutinesAnalyzer
                 {
                     if(WhileBlockHasNoYieldReturn(whileStatement))
                     {
-                        context.ReportDiagnosticWithLocation(Rule, whileStatement.GetLocation());
+                        context.ReportNewDiagnostic(Rule);
                     }
                 }
             }

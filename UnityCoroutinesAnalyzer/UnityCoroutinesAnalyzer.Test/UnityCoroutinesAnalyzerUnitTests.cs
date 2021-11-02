@@ -9,8 +9,7 @@ namespace UnityCoroutinesAnalyzer.Test
     [TestClass]
     public class UnityCoroutinesAnalyzerUnitTest
     {
-        //No diagnostics expected to show up
-        [TestMethod]
+        //[TestMethod]
         public async Task TestMethod1()
         {
             var test = @"";
@@ -18,7 +17,6 @@ namespace UnityCoroutinesAnalyzer.Test
             await VerifyCS.VerifyAnalyzerAsync(test);
         }
 
-        //Diagnostic and CodeFix both triggered and checked for
         [TestMethod]
         public async Task TestMethod2()
         {
@@ -29,11 +27,19 @@ namespace UnityCoroutinesAnalyzer.Test
     using System.Text;
     using System.Threading.Tasks;
     using System.Diagnostics;
+    using System.Collections;
 
     namespace ConsoleApplication1
     {
-        class {|#0:TypeName|}
+        class TypeName
         {   
+            IEnumerator Some()
+            {
+                while(true)
+                {
+                    int s = 0;
+                }
+            }
         }
     }";
 
@@ -44,16 +50,24 @@ namespace UnityCoroutinesAnalyzer.Test
     using System.Text;
     using System.Threading.Tasks;
     using System.Diagnostics;
+    using System.Collections;
 
     namespace ConsoleApplication1
     {
-        class TYPENAME
+        class TypeName
         {   
+            IEnumerator Some()
+            {
+                while(true)
+                {
+                    int s = 0;
+                    yield return null;
+                }
+            }
         }
     }";
 
-            var expected = VerifyCS.Diagnostic("UnityCoroutinesAnalyzer").WithLocation(0).WithArguments("TypeName");
-            await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
+            await VerifyCS.VerifyCodeFixAsync(test, fixtest);
         }
     }
 }

@@ -10,7 +10,7 @@
 
   <PropertyGroup>
     <PackageId>UnityCoroutinesAnalyzer</PackageId>
-    <PackageVersion>1.0.0.0</PackageVersion>
+    <PackageVersion>1.0.3.2</PackageVersion>
     <Authors>Viaceslavus</Authors>
     <PackageLicense>https://opensource.org/licenses/MIT</PackageLicense>
     <PackageProjectUrl>https://github.com/Viaceslavus/UnityCoroutines-AnalyzerPack</PackageProjectUrl>

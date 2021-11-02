@@ -23,7 +23,7 @@ namespace UnityCoroutinesAnalyzer
             return expression.ChildNodes().Where(n => predicate == null ? n.IsKind((SyntaxKind)TryParseSyntaxToEnum()) : predicate(n)).First() as TResultSyntax;
         }
 
-        public static TResultSyntax FindChildNodeWithSyntaxKind<TResultSyntax>(this CSharpSyntaxNode expression, SyntaxKind syntaxKind) where TResultSyntax : CSharpSyntaxNode
+        public static TResultSyntax FindChildNodeWithSyntaxKind<TResultSyntax>(this SyntaxNode expression, SyntaxKind syntaxKind) where TResultSyntax : SyntaxNode
         {
             return expression.ChildNodes().Where(n => n.IsKind(syntaxKind)).FirstOrDefault() as TResultSyntax;
         }

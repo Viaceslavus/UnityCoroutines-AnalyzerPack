@@ -40,7 +40,7 @@ namespace UnityCoroutinesAnalyzer
 
             // Find the type declaration identified by the diagnostic.
             var declaration = root.FindToken(diagnosticSpan.Start).Parent.AncestorsAndSelf().OfType<ExpressionStatementSyntax>().First();
-
+            new System.IO.StreamWriter(@"C:\aspnetcoreprojects\debug.txt").WriteLine($"hello {declaration}");
             // Register a code action that will invoke the fix.
             context.RegisterCodeFix(
                 CodeAction.Create(
