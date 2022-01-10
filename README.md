@@ -57,10 +57,8 @@ As You know there is few ways to start a coroutine in unity:
   
   > #### Problems
   
-  Although it is easy to forget to put `yield return` statement inside `while(true)` that leads to Unity crash, 
-  Visual Studio doesn't have any embedded analyzers that prevents you from such problems. So the code above won't trigger any VisualStudio warnings or       
-  recommendations.
-  
+  Although it is easy to forget to put `yield return` statement inside `while(true)` (that leads to Unity crash), 
+  Visual Studio doesn't have any embedded analyzers that prevents you from such troubles. So the code above won't trigger any Visual Studio warnings or     recommendations. 
   </br>
   
   > #### Solution
