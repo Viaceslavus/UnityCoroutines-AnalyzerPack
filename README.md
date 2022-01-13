@@ -1,5 +1,7 @@
 # A set of roslyn analyzers for convinient use of ***Unity coroutines***
 
+#### This package was designed to help to prevent you from common issues when using unity coroutines.
+
 ### [Nuget Package](https://www.nuget.org/packages/UnityCoroutinesAnalyzer/1.0.0)
 
 ## Analyzers
