@@ -2,7 +2,7 @@
 
 #### This package was designed to help to prevent you from common issues when using unity coroutines.
 
-### [Nuget Package](https://www.nuget.org/packages/UnityCoroutinesAnalyzer/1.0.0)
+### [Nuget Package](https://www.nuget.org/packages/UnityCoroutinesAnalyzer/1.0.3.5)
 
 ## Analyzers
 
